@@ -1,3 +1,5 @@
-Jaringan komputer adalah kumpulan komputer yang saling terhubung.
-Tujuan jaringan adalah berbagi data dan sumber daya.
-Contoh jaringan adalah LAN, MAN, dan WAN.
+Kecerdasan Buatan berkembang sangat pesat dalam beberapa tahun terakhir. 
+Large Language Model atau LLM menjadi mesin utama di balik asisten pintar modern. 
+Dengan menggunakan Python, pengembang dapat membangun Agent yang mampu berpikir logis. 
+Sistem ini bekerja dengan cara memproses data besar dan memberikan solusi otomatis. 
+Integrasi antara manusia dan teknologi akan terus menciptakan efisiensi baru.

@@ -1,30 +1,31 @@
 # Tugas Praktikum Python & AI Agent
 
 ## Identitas Mahasiswa
-- **Nama**          : IZUDDIN ARGA EKO SARTONO
-- **NIM**           : 230103265
-- **Kelas**         : TI23C1
+- **Nama** : IZUDDIN ARGA EKO SARTONO
+- **NIM** : 230103265
+- **Kelas** : TI23C1
 - **Program Studi** : TEKNIK INFORMATIKA
-- **Mata Kuliah**   : PEMROGRAMAN PYTHON
-- **Dosen**         : TRYONO, M.Kom.
+- **Mata Kuliah** : PEMROGRAMAN PYTHON
+- **Dosen** : TRYONO, M.Kom.
 
 ---
 
 ## Deskripsi Tugas
-
-Implementasi lengkap **Praktikum 7 & 8** tentang Python AI Agent dengan fitur:
-
+Implementasi lengkap **Praktikum 7 & 8** tentang Python AI Agent.
 
 ## Hasil Screenshot
 
-### 1. Konversi Suhu
-![Konversi Suhu](screenshot/konversi_suhu.png)
+### 1. Ringkasan
+![Ringkasan](screenshot/ringkasan.png)
 
-### 2. BMI
-![BMI](screenshot/bmi.png)
+### 2. Kalkulator dan pembaca suhu
+![Kalkulator dan pembaca suhu](screenshot/kalkulator_pembaca_suhu.png)
 
-### 3. Cari Kata
-![Cari Kata](screenshot/cari_kata.png)
+### 3. Quiz
+![Quiz](screenshot/quiz.png)
 
-### 4. Pembuatan Soal
-![Pembuatan Soal](screenshot/pembuatan_soal.png)
+### 4. Hapus memori
+![Hapus memori](screenshot/phapus_memori.png)
+
+### 5. Menambahkan task
+![Menambahkan task](screenshot/menambahkan_task.png)

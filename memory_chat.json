@@ -1,11 +1,18 @@
 [
   {
-    "judul": "Belajar agent multi-step"
+    "role": "user",
+    "content": "tambah task mengerjakan tugas IA"
   },
   {
-    "judul": "Belajar Python"
+    "role": "agent",
+    "content": "Task 'mengerjakan tugas ia' ditambahkan!\n[Trace: add_task]"
   },
   {
-    "judul": "Kerjakan tugas pertemuan 7"
+    "role": "user",
+    "content": "tambah task mengerjakan laporan"
+  },
+  {
+    "role": "agent",
+    "content": "Task 'mengerjakan laporan' ditambahkan!\n[Trace: add_task]"
   }
 ]

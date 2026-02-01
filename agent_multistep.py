@@ -1,59 +1,83 @@
-import json
-import os
+from tools import kalkulator, kamus_lookup, baca_file
 
-def read_file(filename):
-    if not os.path.exists(filename):
-        return None
-    with open(filename, "r", encoding="utf-8") as f:
-        return f.readlines()
+def plan(user_input: str):
+    teks = user_input.lower().strip()
+    langkah = []
 
-def extract_points(lines, max_points=3):
-    points = []
-    for line in lines:
-        line = line.strip()
-        if line and len(points) < max_points:
-            points.append(line)
-    return points
+    # rencana sederhana berbasis kata kunci
+    if teks.startswith("buat ringkasan file "):
+        path = teks.replace("buat ringkasan file", "").strip()
+        langkah.append(("baca_file", path))
+        langkah.append(("ringkas_teks", None))
+        return langkah
 
-def generate_quiz(points):
-    quiz = []
-    for i, point in enumerate(points, start=1):
-        question = {
-            "question": f"Apa inti dari pernyataan berikut?\n'{point}'",
-            "options": [
-                "Penjelasan yang benar",
-                "Penjelasan salah A",
-                "Penjelasan salah B",
-                "Penjelasan salah C"
-            ],
-            "answer": "Penjelasan yang benar"
-        }
-        quiz.append(question)
-    return quiz
+    if teks.startswith("analisis nilai file "):
+        path = teks.replace("analisis nilai file", "").strip()
+        langkah.append(("baca_file", path))
+        langkah.append(("hitung_rata2", None))
+        return langkah
 
-def buat_quiz_dari_file(filename):
-    print("[TRACE] Membaca file...")
-    lines = read_file(filename)
-    if lines is None:
-        return "File tidak ditemukan."
+    # fallback: satu langkah
+    langkah.append(("jawab_langsung", teks))
+    return langkah
 
-    print("[TRACE] Mengambil 3 poin utama...")
-    points = extract_points(lines)
+def act(step, context):
+    nama_tool, arg = step
 
-    print("[TRACE] Membuat soal quiz...")
-    quiz = generate_quiz(points)
+    if nama_tool == "baca_file":
+        return baca_file(arg)
 
-    output = ""
-    for i, q in enumerate(quiz, start=1):
-        output += f"\nSoal {i}: {q['question']}\n"
-        for opt in q["options"]:
-            output += f"- {opt}\n"
-    return output
+    if nama_tool == "ringkas_teks":
+        teks = context.get("last_output", "")
+        # ringkas rule-based: ambil 2 kalimat pertama
+        kalimat = teks.split(".")
+        ringkas = ".".join(kalimat[:2]).strip()
+        return ringkas + "."
 
-if __name__ == "__main__":
-    command = input("Masukkan perintah: ")
+    if nama_tool == "hitung_rata2":
+        teks = context.get("last_output", "")
+        # ambil angka dari teks (asumsi satu angka per baris)
+        angka = []
+        for line in teks.splitlines():
+            try:
+                angka.append(float(line.strip()))
+            except:
+                pass
+        if len(angka) == 0:
+            return "Tidak ada angka yang bisa dihitung."
+        return sum(angka) / len(angka)
 
-    if command.startswith("buat quiz dari file"):
-        filename = command.replace("buat quiz dari file", "").strip()
-        result = buat_quiz_dari_file(filename)
-        print(result)
+    if nama_tool == "jawab_langsung":
+        return "Saya belum paham tugas itu. Coba perintah yang jelas."
+
+def observe(result, context):
+    context["last_output"] = result
+
+def reflect(context):
+    # refleksi sederhana: cek error umum
+    out = context.get("last_output", "")
+    if isinstance(out, str) and "Error" in out:
+        context["need_retry"] = True
+    else:
+        context["need_retry"] = False
+
+def run_agent(user_input):
+    langkah = plan(user_input)
+    context = {}
+
+    for step in langkah:
+        result = act(step, context)
+        observe(result, context)
+        reflect(context)
+
+        if context.get("need_retry"):
+            return "Langkah gagal, silakan cek input atau file."
+
+    return context.get("last_output", "")
+
+while True:
+    q = input("\nKamu: ")
+    if q.lower() in ["exit", "quit"]:
+        print("Agent berhenti.")
+        break
+    print("Agent:", run_agent(q))
