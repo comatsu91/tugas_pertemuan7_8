@@ -1,0 +1,11 @@
+Input: konversi suhu 30 C ke F
+Output: 30°C = 86.0°F
+
+Input: hitung bmi 70 1.75
+Output: BMI = 22.86 (Normal)
+
+Input: hitung kata python di data.txt
+Output: Kata 'python' muncul 5 kali
+
+Input: ringkas file artikel.txt
+Output: Python adalah bahasa pemrograman tingkat tinggi. Python mudah dipelajari.

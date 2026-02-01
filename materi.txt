@@ -1,0 +1,3 @@
+Jaringan komputer adalah kumpulan komputer yang saling terhubung.
+Tujuan jaringan adalah berbagi data dan sumber daya.
+Contoh jaringan adalah LAN, MAN, dan WAN.
